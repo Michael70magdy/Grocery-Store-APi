@@ -1,0 +1,531 @@
+{
+	"info": {
+		"_postman_id": "7981a384-b708-41b0-8881-74885046255f",
+		"name": "Grocery Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27391236"
+	},
+	"item": [
+		{
+			"name": "products folder",
+			"item": [
+				{
+					"name": "Get Status",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{GroceryURL}}/products/:productId",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"products",
+								":productId"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "4643"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cart folder",
+			"item": [
+				{
+					"name": "Get Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GroceryURL}}/Carts/:cartId",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"Carts",
+								":cartId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "zibaFHIGCc9p_djesYx_V"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cart items",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productId\": 1234\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GroceryURL}}/Carts/:cartId/items",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"Carts",
+								":cartId",
+								"items"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "zibaFHIGCc9p_djesYx_V"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Carts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{GroceryURL}}/Carts",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"Carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product to the cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productId\": 1225,\r\n   \"quantity\":11\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GroceryURL}}/Carts/:cartId/items",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"Carts",
+								":cartId",
+								"items"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "zibaFHIGCc9p_djesYx_V"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify item in the cart",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"productId\": 4643,\r\n   \"quantity\":5\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GroceryURL}}/Carts/:cartId/items/:itemId",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"Carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "zibaFHIGCc9p_djesYx_V"
+								},
+								{
+									"key": "itemId",
+									"value": "220216589"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"productId\": 8739,\r\n       \"quantity\":10\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GroceryURL}}/Carts/:cartId/items/:itemId",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"Carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "zibaFHIGCc9p_djesYx_V"
+								},
+								{
+									"key": "itemId",
+									"value": "220216589"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete item",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Get orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "959af5c53cc990982c68db35fb0b33ee7969be016ad540b2020cae483753a2e8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GroceryURL}}/orders",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "959af5c53cc990982c68db35fb0b33ee7969be016ad540b2020cae483753a2e8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{GroceryURL}}/orders/:orderId/?invoice=true",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"orders",
+								":orderId",
+								""
+							],
+							"query": [
+								{
+									"key": "invoice",
+									"value": "true"
+								}
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "XiStpPcwWxnQFLnqYeVlD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "959af5c53cc990982c68db35fb0b33ee7969be016ad540b2020cae483753a2e8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cartId\" : \"zibaFHIGCc9p_djesYx_V\",\r\n    \"customerName\" : \"Test michael\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GroceryURL}}/orders",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "959af5c53cc990982c68db35fb0b33ee7969be016ad540b2020cae483753a2e8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"customerName\":\"michael\",\r\n\"comment\":\"very good\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GroceryURL}}/orders/:orderId",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "XiStpPcwWxnQFLnqYeVlD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "959af5c53cc990982c68db35fb0b33ee7969be016ad540b2020cae483753a2e8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{GroceryURL}}/orders/:orderId",
+							"host": [
+								"{{GroceryURL}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "XiStpPcwWxnQFLnqYeVlD"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "request token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"clientName\": \"michael\",\r\n   \"clientEmail\": \"michael@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{GroceryURL}}/api-clients",
+					"host": [
+						"{{GroceryURL}}"
+					],
+					"path": [
+						"api-clients"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
